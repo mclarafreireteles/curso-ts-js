@@ -10,23 +10,13 @@ const eat = {
     }
 }
 
-const drinkk = {
+const drink = {
     speak() {
         console.log(`${this.first} is drinking.`)
     }
 }
 
-const personPrototype = {
-    speak() {
-        console.log(`${this.first} is speaking`)
-    },
-    eat() {
-        console.log(`${this.first} is eating`)
-    },
-    drink() {
-        console.log(`${this.first} is drinking`)
-    }
-}
+const personPrototype = Object.assign({}, speak, eat, drink)
 
 function createPerson(first, last){
     return Object.create(personPrototype, {
