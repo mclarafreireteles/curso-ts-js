@@ -7,6 +7,7 @@ function Account(agency, account, balance){
 Account.prototype.withdraw = function(value) {
     if (this.balance < value) {
         this.getBalance()
+        console.log("Insuficient balance")
         return;
     }
 
@@ -23,8 +24,23 @@ Account.prototype.getBalance = function() {
     )
 }
 
-const account1 = new Account(11, 22, 1000)
+function CurrentAccount(agency, account, balance, limit) {
+    Account.call(this)
+    this.limit = limit
+}
 
-account1.getBalance()
-account1.withdraw(10)
+CurrentAccount.prototype = Object.create(Account.prototype)
+CurrentAccount.prototype.constructor = CurrentAccount
 
+CurrentAccount.prototype.withdraw = function(value) {
+    if ((this.balance + this.balance) < value) {
+        this.getBalance()
+        console.log("Insuficient balance")
+        return;
+    }
+
+    this.balance -= value
+    this.getBalance()
+}
+
+const CC = new CurrentAccount(123, 1, 1000, 100)
