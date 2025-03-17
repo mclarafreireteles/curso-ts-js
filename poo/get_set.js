@@ -6,16 +6,20 @@ class Car {
     }
 
     set speed(value) {
+        console.log('setter')
         if (typeof value !== 'number') return;
+        if (value >= 100 || value <= 0) return;
+        this[_speed] = value;
     }
 
     get speed() {
-        return[_speed]
+        console.log('getter')
+        return this[_speed]
     }
 
     accelerate() {
         if (this[_speed] >= 100) return;
-        this.speed++;
+        this[_speed]++;
     }
 
     brake() {
@@ -31,4 +35,4 @@ for (let i = 0; i <= 200; i++) {
 }
 
 c1.accelerate()
-console.log(c1)
+console.log(c1.speed)
